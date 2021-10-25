@@ -1,14 +1,11 @@
 @echo off
 
-set times=1
-set cur_pid=0
-
 for /f "tokens=2 delims=," %%i in ('tasklist /fi "imagename eq cmd.exe" /FO CSV /NH') do (
     set cur_pid=%%i
-    goto out
+    goto continue
 )
 
-:out
+:continue
 
 for /f %%i in ('tasklist /fi "imagename eq paraengineclient.exe"') do (
     if "%%i" == "paraengineclient.exe" (
