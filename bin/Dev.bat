@@ -43,7 +43,7 @@ if "%param1%"=="/a" (
     code -a %sdk_path%_mod\DiffWorld\
     code -a %sdk_path%..\trunk\
 
-    code -a %sdk_path%redist\log.txt
+    code -r %sdk_path%redist\log.txt
 )
 
 if "%param1%"=="/e" or "%param2%"=="/e" (
