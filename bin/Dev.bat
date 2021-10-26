@@ -32,6 +32,7 @@ for /f "tokens=2 delims=," %%i in ('tasklist /fi "imagename eq cmd.exe" /FO CSV 
 )
 
 set param1=%1
+set param2=%2
 set sdk_path=%~dp0..\
 
 if "%param1%"=="/a" (
@@ -43,4 +44,8 @@ if "%param1%"=="/a" (
     code -a %sdk_path%..\trunk\
 
     code -a %sdk_path%redist\log.txt
+)
+
+if "%param1%"=="/e" or "%param2%"=="/e" (
+    exit 0
 )
