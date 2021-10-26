@@ -1,5 +1,7 @@
 @echo off
 
+title ParacraftSDK-DEV
+
 for /f "tokens=2 delims=," %%i in ('tasklist /fi "imagename eq cmd.exe" /FO CSV /NH') do (
     set cur_pid=%%i
     goto continue
@@ -27,4 +29,18 @@ for /f "tokens=2 delims=," %%i in ('tasklist /fi "imagename eq cmd.exe" /FO CSV 
     if %%i neq %cur_pid% (
         taskkill /f /pid %%i 2>nul
     )
+)
+
+set param1=%1
+set sdk_path=%~dp0..\
+
+if "%param1%"=="/a" (
+    code -n
+
+    code -a %sdk_path%_mod\WorldShare\
+    code -a %sdk_path%_mod\ExplorerApp\
+    code -a %sdk_path%_mod\DiffWorld\
+    code -a %sdk_path%..\trunk\
+
+    code -a %sdk_path%redist\log.txt
 )
