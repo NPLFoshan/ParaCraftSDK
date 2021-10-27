@@ -24,7 +24,7 @@ if %be_exist% == 1 (
     taskkill /f /im paraengineclient.exe
 )
 
-if %param1% == "/h" or %params2% == "/h" (
+if "%param1%" == "/h" or "%param2%" == "/h" (
     set http_debug=httpdebug="true"
 )
 
