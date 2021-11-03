@@ -4,6 +4,7 @@ title ParacraftSDK-DEV
 
 set param1=%1
 set param2=%2
+set world=
 
 for /f "tokens=2 delims=," %%i in ('tasklist /fi "imagename eq cmd.exe" /fo csv /nh') do (
     set cur_pid=%%i
