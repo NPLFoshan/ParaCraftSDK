@@ -30,8 +30,14 @@ if "%param1%" == "/h" (
     set http_debug=httpdebug="true"
 )
 
+if "%param1%" == "/world" (
+    set world=world="%param2%"
+)
+
+echo %world%
+
 pushd "%~dp0../redist/"
-start /min call "ParaEngineClient.exe" mod="WorldShare|ExplorerApp|DiffWorld" %http_debug% loadpackage="%~dp0../../trunk/,;%~dp0../_mod/WorldShare/,;%~dp0../_mod/ExplorerApp/,;%~dp0../_mod/DiffWorld/" single="false" mc="true" noupdate="true" isDevEnv="true"
+start /min call "ParaEngineClient.exe" mod="WorldShare|ExplorerApp|DiffWorld" %world% %http_debug% loadpackage="%~dp0../../trunk/,;%~dp0../_mod/WorldShare/,;%~dp0../_mod/ExplorerApp/,;%~dp0../_mod/DiffWorld/" single="false" mc="true" noupdate="true" isDevEnv="true"
 popd
 
 for /f "tokens=2 delims=," %%i in ('tasklist /fi "imagename eq cmd.exe" /fo csv /nh') do (
