@@ -5,7 +5,7 @@ title ParacraftSDK-DEV
 set param1=%1
 set param2=%2
 
-for /f "tokens=2 delims=," %%i in ('tasklist /fi "imagename eq cmd.exe" /FO CSV /NH') do (
+for /f "tokens=2 delims=," %%i in ('tasklist /fi "imagename eq cmd.exe" /fo csv /nh') do (
     set cur_pid=%%i
     goto continue
 )
@@ -24,7 +24,9 @@ if %be_exist% == 1 (
     taskkill /f /im paraengineclient.exe
 )
 
-if "%param1%" == "/h" or "%param2%" == "/h" (
+if "%param1%" == "/h" (
+    set http_debug=httpdebug="true"
+) else if "%param2%"=="/h" (
     set http_debug=httpdebug="true"
 )
 
@@ -32,7 +34,7 @@ pushd "%~dp0../redist/"
 start /min call "ParaEngineClient.exe" mod="WorldShare|ExplorerApp|DiffWorld" %http_debug% loadpackage="%~dp0../../trunk/,;%~dp0../_mod/WorldShare/,;%~dp0../_mod/ExplorerApp/,;%~dp0../_mod/DiffWorld/" single="false" mc="true" noupdate="true" isDevEnv="true"
 popd
 
-for /f "tokens=2 delims=," %%i in ('tasklist /fi "imagename eq cmd.exe" /FO CSV /NH') do (
+for /f "tokens=2 delims=," %%i in ('tasklist /fi "imagename eq cmd.exe" /fo csv /nh') do (
     if %%i neq %cur_pid% (
         taskkill /f /pid %%i 2>nul
     )
@@ -51,6 +53,8 @@ if "%param1%"=="/a" (
     code -r %sdk_path%redist\log.txt
 )
 
-if "%param1%"=="/e" or "%param2%"=="/e" (
-    exit 0
+if "%param1%" == "/e" (
+    exit
+) else if "%param2%" == "/e" (
+    exit
 )
