@@ -42,12 +42,17 @@ if "%param1%" == "/touch" (
     set touch=IsTouchDevice="true"
 )
 
+if "%param1%" == "/http_env" (
+    set http_env=http_env="%param2%" httpdebug="true"
+)
+
 pushd "%~dp0../redist/"
 start /min call "ParaEngineClient.exe" ^
                 mod="WorldShare|ExplorerApp|DiffWorld" ^
                 %touch% ^
                 %world% ^
                 %http_debug% ^
+                %http_env% ^
                 loadpackage="%~dp0../../trunk/,;%~dp0../_mod/WorldShare/,;%~dp0../_mod/ExplorerApp/,;%~dp0../_mod/DiffWorld/" ^
                 single="false" ^
                 mc="true" ^
