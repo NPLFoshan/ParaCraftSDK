@@ -5,6 +5,7 @@ title ParacraftSDK-DEV
 set param1=%1
 set param2=%2
 set world=
+set http_env=
 set touch=
 
 for /f "tokens=2 delims=," %%i in ('tasklist /fi "imagename eq cmd.exe" /fo csv /nh') do (
