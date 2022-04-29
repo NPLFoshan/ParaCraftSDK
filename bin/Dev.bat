@@ -61,12 +61,6 @@ start /min call "ParaEngineClient.exe" ^
                 isDevEnv="true"
 popd
 
-for /f "tokens=2 delims=," %%i in ('tasklist /fi "imagename eq cmd.exe" /fo csv /nh') do (
-    if %%i neq %cur_pid% (
-        taskkill /f /pid %%i 2>nul
-    )
-)
-
 set sdk_path=%~dp0..\
 
 if "%param1%"=="/a" (
@@ -78,6 +72,12 @@ if "%param1%"=="/a" (
     code -a %sdk_path%..\trunk\
 
     code -r %sdk_path%redist\log.txt
+)
+
+for /f "tokens=2 delims=," %%i in ('tasklist /fi "imagename eq cmd.exe" /fo csv /nh') do (
+    if %%i neq %cur_pid% (
+        taskkill /f /pid %%i 2>nul
+    )
 )
 
 if "%param1%" == "/e" (
