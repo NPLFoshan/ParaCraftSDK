@@ -45,6 +45,7 @@ function get_resource_list(version, callback)
         'main150727.pkg',
         'main_mobile_res.pkg',
         'npl_packages/paracraftbuildinmod.zip',
+        'version.txt',
     }
 
     System.os.GetUrl(
