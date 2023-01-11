@@ -3,7 +3,15 @@ Author(s): big
 Date: 2022.6.13
 ]]
 
-NPL.load('(gl)script/ide/System/System.lua')
+NPL.load("(gl)script/mainstate.lua")
+NPL.load("(gl)script/ide/commonlib.lua")
+NPL.load("(gl)script/ide/System/System.lua")
+
+NPL.load("(gl)script/ide/Locale.lua");
+NPL.load("(gl)script/apps/Aries/Creator/Game/Common/Translation.lua")
+local Translation = commonlib.gettable("MyCompany.Aries.Game.Common.Translation")
+Translation.Init()
+
 NPL.load("(gl)script/apps/Aries/Creator/Game/game_logic.lua")
 
 NPL.load("(gl)script/apps/Aries/Creator/Game/API/FileDownloader.lua")
@@ -33,7 +41,7 @@ function get_version(callback)
 end
 
 function get_resource_list(version, callback)
-    local resource_list_url = 'http://tmlog.paraengine.com/coredownload/' .. version .. '/list/patch_1.0.0.p'
+    local resource_list_url = 'http://tmlog.paraengine.com/coredownload/' .. version .. '/list/patch_1.1.0.p'
     local list_filter = {
         'assets_manifest.txt',
         'config/bootstrapper.xml',
@@ -47,10 +55,15 @@ function get_resource_list(version, callback)
         'npl_packages/paracraftbuildinmod.zip',
         'version.txt',
     }
+	
+	echo(resource_list_url, true)
 
     System.os.GetUrl(
         resource_list_url,
         function(err, msg, data)
+			echo(err, true)
+			echo(msg, true)
+			echo(data, true)
             if err ~= 200 then
                 return
             end

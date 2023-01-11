@@ -54,7 +54,7 @@ start /min call "ParaEngineClient.exe" ^
                 %world% ^
                 %http_debug% ^
                 %http_env% ^
-                loadpackage="%~dp0../../trunk/,;%~dp0../_mod/WorldShare/,;%~dp0../_mod/ExplorerApp/,;%~dp0../_mod/DiffWorld/" ^
+                loadpackage="%~dp0../../trunk/,;%~dp0../_mod/WorldShare/,;%~dp0../_mod/ExplorerApp/,;%~dp0../_mod/DiffWorld/,;%~dp0../_mod/GeneralGameServerMod/" ^
                 single="false" ^
                 mc="true" ^
                 noupdate="true" ^
